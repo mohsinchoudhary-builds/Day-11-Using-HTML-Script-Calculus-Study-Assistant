@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A student-friendly Multivariable Calculus study dashboard with tasks, timer, notes, and formulas.">
+  <title>Calculus Study Assistant | Day 11</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Calculus Study Assistant home">
+        <span class="brand-icon">∫</span>
+        <span><strong>CalcMate</strong><small>Study • Practice • Progress</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a class="nav-link active" href="#dashboard">▦ <span>Dashboard</span></a>
+        <a class="nav-link" href="#tasks">＋ <span>My Tasks</span></a>
+        <a class="nav-link" href="#timer">◷ <span>Focus Timer</span></a>
+        <a class="nav-link" href="#formulas">∑ <span>Formula Notes</span></a>
+        <a class="nav-link" href="#notes">✎ <span>Quick Notes</span></a>
+      </nav>
+      <div class="sidebar-tip">
+        <span class="tip-icon">✦</span>
+        <p><strong>Small steps count.</strong><br>One focused session at a time.</p>
+      </div>
+      <div class="sidebar-footer">DAY 11 PROJECT <span>Made for learners</span></div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">YOUR LEARNING SPACE</p>
+          <h1>Welcome back, Mohsin <span class="wave">👋</span></h1>
+          <p class="subheading">Ready to make progress in Multivariable Calculus?</p>
+        </div>
+        <div class="date-chip"><span>◷</span> <span id="todayLabel">Your study dashboard</span></div>
+      </header>
+
+      <section class="stats-grid" aria-label="Study statistics">
+        <article class="stat-card stat-blue">
+          <div class="stat-icon">☷</div><div><p>Total tasks</p><strong id="totalTasks">0</strong><small>Keep building momentum</small></div>
+        </article>
+        <article class="stat-card stat-green">
+          <div class="stat-icon">✓</div><div><p>Completed</p><strong id="completedTasks">0</strong><small id="completionCaption">Every task counts</small></div>
+        </article>
+        <article class="stat-card stat-purple">
+          <div class="stat-icon">◷</div><div><p>Focus sessions</p><strong id="sessionsCount">0</strong><small>Sessions completed</small></div>
+        </article>
+        <article class="stat-card stat-orange">
+          <div class="stat-icon">✦</div><div><p>Study goal</p><strong>25 min</strong><small>One focus session</small></div>
+        </article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel task-panel" id="tasks">
+          <div class="panel-heading">
+            <div><span class="heading-icon">☑</span><div><h2>Today's tasks</h2><p>Turn your goals into progress.</p></div></div>
+            <span class="count-pill" id="taskCountPill">0 tasks</span>
+          </div>
+          <form id="taskForm" class="task-form">
+            <label class="sr-only" for="taskInput">New study task</label>
+            <input id="taskInput" type="text" maxlength="120" placeholder="Add a study task (e.g. Solve Exercise 1.2)" required>
+            <button class="primary-button" type="submit">＋ Add task</button>
+          </form>
+          <div class="task-filters" role="group" aria-label="Filter tasks">
+            <button class="filter-button selected" data-filter="all" type="button">All</button>
+            <button class="filter-button" data-filter="active" type="button">To do</button>
+            <button class="filter-button" data-filter="completed" type="button">Completed</button>
+          </div>
+          <ul class="task-list" id="taskList" aria-live="polite"></ul>
+          <div class="empty-state" id="emptyState"><span>✦</span><strong>Your study list is clear</strong><p>Add a task above to get started.</p></div>
+          <div class="progress-area">
+            <div class="progress-label"><span>Daily progress</span><strong id="progressText">0%</strong></div>
+            <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          </div>
+        </section>
+
+        <div class="right-column">
+          <section class="panel timer-panel" id="timer">
+            <div class="panel-heading compact">
+              <div><span class="heading-icon">◷</span><div><h2>Focus timer</h2><p>Work calmly, one step at a time.</p></div></div>
+            </div>
+            <div class="timer-face">
+              <div class="timer-ring" id="timerRing"><div class="timer-inner"><strong id="timerDisplay">25:00</strong><span id="timerStatus">Ready to focus</span></div></div>
+            </div>
+            <div class="timer-presets" aria-label="Timer duration">
+              <button type="button" class="preset-button active" data-minutes="25">25 min</button>
+              <button type="button" class="preset-button" data-minutes="15">15 min</button>
+              <button type="button" class="preset-button" data-minutes="5">5 min</button>
+            </div>
+            <div class="timer-actions">
+              <button id="startPauseButton" class="primary-button" type="button">▶ Start focus</button>
+              <button id="resetTimerButton" class="secondary-button" type="button">↺ Reset</button>
+            </div>
+            <p class="timer-hint">Tip: silence notifications while you study.</p>
+          </section>
+
+          <section class="panel formula-panel" id="formulas">
+            <div class="panel-heading compact">
+              <div><span class="heading-icon">∑</span><div><h2>Formula quick look</h2><p>Common multivariable reminders.</p></div></div>
+            </div>
+            <div class="formula-list">
+              <article class="formula-item"><span>01</span><div><strong>Partial derivative</strong><p>For \(f(x,y)\), differentiate in one variable while holding the other constant.</p></div></article>
+              <article class="formula-item"><span>02</span><div><strong>Gradient</strong><p>\(\nabla f = \langle f_x, f_y \rangle\)</p></div></article>
+              <article class="formula-item"><span>03</span><div><strong>Two-variable limit</strong><p>Check that the same limit is approached along different paths when needed.</p></div></article>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="panel notes-panel" id="notes">
+        <div class="panel-heading compact">
+          <div><span class="heading-icon">✎</span><div><h2>Quick notes</h2><p>Save formulas, reminders, or questions for later.</p></div></div>
+          <span class="saved-label" id="saveStatus">Saved in this browser</span>
+        </div>
+        <label class="sr-only" for="notesInput">Your study notes</label>
+        <textarea id="notesInput" rows="4" placeholder="Example: For a quotient limit, make sure the denominator's limit is not zero..."></textarea>
+        <div class="notes-footer"><span>Your notes stay on this device in this browser.</span><button id="saveNotesButton" class="primary-button" type="button">Save notes</button></div>
+      </section>
+
+      <footer class="page-footer"><span>CalcMate • Web Development Day 11</span><span>Build a habit. Build your future. ✦</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
